@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vásárló Lista</title>
+    <style>
+        /* Alap stílusok */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .light-mode {
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .dark-mode {
+            background-color: #333;
+            color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .mode-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .mode-switch:hover {
+            background-color: #555;
+        }
+
+        .list {
+            margin-top: 20px;
+        }
+
+        .list-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            align-items: center;
+        }
+
+        .list-item button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .list-item button:hover {
+            background-color: #d32f2f;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 60px);
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button.add-item {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button.add-item:hover {
+            background-color: #388e3c;
+        }
+    </style>
+</head>
+<body class="light-mode">
+
+<!-- Sötét/világos módváltó -->
+<button class="mode-switch" onclick="toggleMode()">Sötét Mód</button>
+
+<div class="container">
+    <h1>Vásárló Lista</h1>
+    <input type="text" id="itemInput" placeholder="Írj be egy terméket...">
+    <button class="add-item" onclick="addItem()">Hozzáadás</button>
+
+    <div class="list" id="itemList">
+        <!-- Vásárló lista elemei itt jelennek meg -->
+    </div>
+</div>
+
+<script>
+    // Sötét/világos mód váltás
+    function toggleMode() {
+        const body = document.body;
+        const button = document.querySelector('.mode-switch');
+        body.classList.toggle('dark-mode');
+        body.classList.toggle('light-mode');
+        
+        // Mód váltás szövegének frissítése
+        if (body.classList.contains('dark-mode')) {
+            button.textContent = 'Világos Mód';
+        } else {
+            button.textContent = 'Sötét Mód';
+        }
+    }
+
+    // Vásárló lista elem hozzáadása
+    function addItem() {
+        const itemInput = document.getElementById('itemInput');
+        const itemText = itemInput.value.trim();
+
+        if (itemText !== '') {
+            const itemList = document.getElementById('itemList');
+            const listItem = document.createElement('div');
+            listItem.classList.add('list-item');
+            
+            const itemTextNode = document.createElement('span');
+            itemTextNode.textContent = itemText;
+            
+            const removeButton = document.createElement('button');
+            removeButton.textContent = 'Törlés';
+            removeButton.onclick = function() {
+                itemList.removeChild(listItem);
+            };
+
+            listItem.appendChild(itemTextNode);
+            listItem.appendChild(removeButton);
+            itemList.appendChild(listItem);
+
+            // Input mező törlése a hozzáadás után
+            itemInput.value = '';
+        }
+    }
+</script>
+
+</body>
+</html>
