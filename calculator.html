@@ -5,49 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Számológép</title>
     <style>
+        /* Alap stílusok */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
+            background-color: #f4f7f6;
+            color: #333;
         }
 
         .calculator {
             background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
             padding: 20px;
-            width: 250px;
+            width: 450px; /* Megnövelt szélesség */
             text-align: center;
         }
 
         .display {
             width: 100%;
             padding: 20px;
-            font-size: 2em;
+            font-size: 2.5em;
             border-radius: 10px;
-            border: 1px solid #ccc;
+            border: 1px solid #ddd;
             margin-bottom: 20px;
             background-color: #f9f9f9;
+            text-align: right;
+            color: #333;
+            box-sizing: border-box;
         }
 
         .buttons {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr); /* Három oszlop a számoknak */
             gap: 10px;
         }
 
+        .operators {
+            display: grid;
+            grid-template-columns: 1fr; /* Egy oszlop a műveleteknek */
+            gap: 10px;
+        }
+
+        /* Új stílusok a gombokhoz */
         .button {
             padding: 20px;
-            font-size: 1.5em;
+            font-size: 1.8em; /* Nagyobb betűméret */
             cursor: pointer;
-            background-color: #f0f0f0;
+            background-color: #e0e0e0;
             border: 1px solid #ccc;
             border-radius: 10px;
-            transition: background-color 0.3s ease;
+            transition: all 0.2s ease;
+            width: 105px; /* Gombok szélessége 100% */
+            box-sizing: border-box;
         }
 
         .button:hover {
@@ -55,7 +69,7 @@
         }
 
         .button:active {
-            background-color: #bbb;
+            background-color: #ccc;
         }
 
         .button.operator {
@@ -79,11 +93,27 @@
         .button.equals {
             background-color: #4caf50;
             color: white;
-            grid-column: span 2;
         }
 
         .button.equals:hover {
             background-color: #388e3c;
+        }
+
+        /* Reszponzivitás */
+        @media (max-width: 400px) {
+            .calculator {
+                width: 100%;
+                padding: 15px;
+            }
+
+            .display {
+                font-size: 2em;
+            }
+
+            .button {
+                font-size: 1.5em;
+                padding: 15px;
+            }
         }
     </style>
 </head>
@@ -92,26 +122,33 @@
 <div class="calculator">
     <input type="text" id="display" class="display" disabled>
 
-    <div class="buttons">
-        <button class="button clear" onclick="clearDisplay()">C</button>
-        <button class="button operator" onclick="appendOperator('/')">/</button>
-        <button class="button operator" onclick="appendOperator('*')">*</button>
-        <button class="button operator" onclick="appendOperator('-')">-</button>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr) 1fr; gap: 10px;">
+        <!-- Szám gombok -->
+        <div class="buttons">
+            <button class="button" onclick="appendNumber('7')">7</button>
+            <button class="button" onclick="appendNumber('8')">8</button>
+            <button class="button" onclick="appendNumber('9')">9</button>
 
-        <button class="button" onclick="appendNumber('7')">7</button>
-        <button class="button" onclick="appendNumber('8')">8</button>
-        <button class="button" onclick="appendNumber('9')">9</button>
-        <button class="button operator" onclick="appendOperator('+')">+</button>
+            <button class="button" onclick="appendNumber('4')">4</button>
+            <button class="button" onclick="appendNumber('5')">5</button>
+            <button class="button" onclick="appendNumber('6')">6</button>
 
-        <button class="button" onclick="appendNumber('4')">4</button>
-        <button class="button" onclick="appendNumber('5')">5</button>
-        <button class="button" onclick="appendNumber('6')">6</button>
-        <button class="button equals" onclick="calculate()">=</button>
+            <button class="button" onclick="appendNumber('1')">1</button>
+            <button class="button" onclick="appendNumber('2')">2</button>
+            <button class="button" onclick="appendNumber('3')">3</button>
 
-        <button class="button" onclick="appendNumber('1')">1</button>
-        <button class="button" onclick="appendNumber('2')">2</button>
-        <button class="button" onclick="appendNumber('3')">3</button>
-        <button class="button" onclick="appendNumber('0')">0</button>
+            <button class="button" onclick="appendNumber('0')">0</button>
+        </div>
+
+        <!-- Műveletek gombok -->
+        <div class="operators">
+            <button class="button operator" onclick="appendOperator('+')">+</button>
+            <button class="button operator" onclick="appendOperator('-')">-</button>
+            <button class="button operator" onclick="appendOperator('*')">*</button>
+            <button class="button operator" onclick="appendOperator('/')">/</button>
+            <button class="button clear" onclick="clearDisplay()">C</button>
+            <button class="button equals" onclick="calculate()">=</button>
+        </div>
     </div>
 </div>
 
