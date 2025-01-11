@@ -1,12 +1,127 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KUTYA</title>
+    <title>Portfólió</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+        }
+
+        nav a {
+            color: white;
+            padding: 15px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .project {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .project img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .project h3 {
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Üdv</h1>
-    <img src="kutya.jpg" alt="">
+
+<header>
+    <h1>Üdvözöllek a Portfólióm oldalán!</h1>
+</header>
+
+<nav>
+    <a href="#home">Főoldal</a>
+    <a href="#projects">Projektek</a>
+    <a href="#about">Rólam</a>
+    <a href="#contact">Kapcsolat</a>
+</nav>
+
+<div class="content" id="home">
+    <h2>Üdvözöllek!</h2>
+    <img src="kutya.jpg" alt="Kép a kutyámról" style="max-width: 400px; border-radius: 10px;">
+    <p>Ez egy egyszerű portfólió oldal, ahol bemutatom a projektjeimet.</p>
+</div>
+
+<div class="content" id="projects">
+    <h2>Projektek</h2>
+    <div class="projects">
+        <!-- Példa egy projekt kártyára -->
+        <div class="project">
+            <img src="project1.jpg" alt="Projekt 1">
+            <h3>Projekt 1</h3>
+            <p>Leírás a projekt 1-ről.</p>
+            <a href="#">Részletek</a>
+        </div>
+
+        <div class="project">
+            <img src="project2.jpg" alt="Projekt 2">
+            <h3>Projekt 2</h3>
+            <p>Leírás a projekt 2-ről.</p>
+            <a href="#">Részletek</a>
+        </div>
+
+        <div class="project">
+            <img src="project3.jpg" alt="Projekt 3">
+            <h3>Projekt 3</h3>
+            <p>Leírás a projekt 3-ról.</p>
+            <a href="#">Részletek</a>
+        </div>
+    </div>
+</div>
+
+<div class="content" id="about">
+    <h2>Rólam</h2>
+    <p>Itt található néhány információ rólam és a szakmai tapasztalataimról.</p>
+</div>
+
+<div class="content" id="contact">
+    <h2>Kapcsolat</h2>
+    <p>Ha szeretnél kapcsolatba lépni velem, itt találod az elérhetőségeimet.</p>
+</div>
+
 </body>
 </html>
